@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add
+{% endblock %}
+
+{% block head %}
+    ADD A NEW EVALUATION
+{% endblock %}
+
+{% block main %}
+<form action="/add" method="POST">
+    {% for test in tests %}
+        <div>
+            <p>{{ test }}:</p>
+            {% for score in scores %}
+                <input type="radio" id="{{ test }}" name="{{ test }}" value="{{ score }}" required>
+                <label for="{{ test }}">{{ score }}</label>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <button class="btn btn-primary" type="submit">ADD</button>
+</form>
+{% endblock %}

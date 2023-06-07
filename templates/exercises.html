@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Exercises
+{% endblock %}
+
+{% block head %}
+    MY EXERCISES
+{% endblock %}
+
+{% block main %}
+    <table>
+        <thead>
+            <tr>
+                {% for key in exercises[0] %}
+                    <th> {{ key }} </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for exercise in exercises %}
+                <tr>
+                    {% for key, value in exercise.items() %}
+                        <td>
+                            {% if key == "link" %}
+                                <a href="{{ value }}">Link</a>
+                            {% else %}
+                                {{ value }}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}

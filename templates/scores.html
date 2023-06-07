@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Scores
+{% endblock %}
+
+{% block head %}
+    MY SCORES
+{% endblock %}
+
+{% block main %}
+    <div id="chart"></div>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        // Access the fig_json variable passed from the Flask route
+        var figJson = {{ fig_json|safe }};
+
+        // Parse the JSON representation of the chart
+        var figData = JSON.parse(figJson);
+
+        // Render the chart using Plotly.js
+        Plotly.newPlot('chart', figData.data, figData.layout);
+    </script>
+    <table class="my-table-scores">
+        <thead>
+            <tr>
+                <th> Name </th>
+                {% for key in myscores[0] %}
+                    <th>{{ key }} </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="{{ num_rows + 1 }}"> {{ name }}</td>
+                {% for row in myscores %}
+                    <tr>
+                        {% for key in row %}
+                            <td>{{ row[key] }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

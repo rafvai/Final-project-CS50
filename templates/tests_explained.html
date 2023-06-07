@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    The tests
+{% endblock %}
+
+{% block head %}
+    TESTS
+{% endblock %}
+
+{% block main %}
+    <body>
+        <div>
+            <h1> {{ testName }}</h1>
+        </div>
+        <div>
+            <h3> {{ testDescription }}</h3>
+        </div>
+        <footer>
+            <p>Information taken from <a href ="https://www.functionalmovement.com"> Functionalmovement.com</a></p>
+        </footer>
+    </body>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My profile
+{% endblock %}
+
+{% block head %}
+    MY PROFILE
+{% endblock %}
+
+{% block main %}
+<div>
+    <img src="https://cdn.shopify.com/s/files/1/0264/0143/9806/files/limitless-logo.png?height=628&pad_color=ffffff&v=1613539471&width=1200" alt="Limitless" height="125">
+</div>
+<table>
+    <thead>
+        <tr>
+            <th> Name </th>
+            {% for key in exercises[0] %}
+                <th>{{ key }} </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan= "{{ exercise| length}}">{{ name }} {{ lastname }}</td>
+        </tr>
+            {% for exercise in exercises %}
+                <tr>
+                    {% for key in exercise %}
+                        <td>{{ exercise[key] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tr>
+    </tbody>
+{% endblock %}

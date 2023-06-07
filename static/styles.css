@@ -1,0 +1,311 @@
+/* Font families */
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+h2, .navbar-brand {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Colors */
+:root {
+  --primary-color: #006666;
+  --secondary-color: #ffc800;
+  --light-color: #f7f7f7;
+  --dark-color: #333333;
+}
+
+.blue {
+  color: #0080FF;
+}
+.red {
+  color: #FF0000;
+}
+.yellow {
+  color: #FFD700;
+}
+.green {
+  color: #008000;
+}
+.bg-light {
+  background-color: var(--light-color);
+}
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.btn-primary:hover {
+  background-color: #005959;
+  border-color: #005959;
+}
+
+/* Navbar */
+.navbar {
+  border: none;
+  background-color: var(--light-color);
+  box-shadow: 0 0 5px #ddd;
+}
+.nav-link {
+  color: var(--dark-color);
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.nav-link:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+/* Header */
+header {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+.title-container {
+  position: relative;
+}
+
+.cs50image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-right: 20px;
+}
+
+.cs50image-container img {
+  width: 250px;
+}
+
+.text-title-container {
+  text-align: center;
+  margin-left: 0px;
+}
+
+
+/* Main */
+main {
+  background-color: #fff;
+  border: 1px solid var(--dark-color);
+  border-radius: 5px;
+  box-shadow: 0 0 5px #ddd;
+  padding: 1.5rem;
+}
+
+/* Forms */
+.form-control {
+  border-radius: 0;
+}
+.form-label {
+  font-weight: bold;
+}
+.btn-secondary {
+  background-color: #ddd;
+  border-color: #ddd;
+}
+.btn-secondary:hover {
+  background-color: #c4c4c4;
+  border-color: #c4c4c4;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+table thead th {
+  text-align: left;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+table tbody tr:nth-child(even) {
+  background-color: var(--light-color);
+}
+table tbody td {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--dark-color);
+}
+
+/* Buttons */
+.btn {
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease-in-out;
+}
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: #005959;
+  border-color: #005959;
+  color: #fff;
+}
+.btn-secondary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: #fff;
+}
+.btn-secondary:hover {
+  background-color: #e6b800;
+  border-color: #e6b800;
+  color: #fff;
+}
+
+/* Forms */
+.form-control {
+  border-radius: 0;
+}
+.form-label {
+  font-weight: bold;
+}
+
+/* Utility classes */
+
+  .my-table-scores {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+  }
+
+  thead {
+    background-color: #f9f9f9;
+    font-weight: bold;
+  }
+
+  th, td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+
+
+  /* Body */
+.tests-body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #F5F5F5;
+}
+
+/* Heading */
+h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: #555;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* List */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+
+select {
+  border: none;
+  background-color: #FFF;
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #DDD;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Submit button */
+input[type="submit"] {
+  background-color: #0080FF;
+  border-color: #0080FF;
+  color: #FFF;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+input[type="submit"]:hover {
+  background-color: #0072D6;
+  border-color: #0072D6;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  background-color: #EDEDED;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+/* Contact Section */
+.contact-section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.contact-section h4 {
+  margin-bottom: 1rem;
+}
+.contact-section p {
+  margin-bottom: 1.5rem;
+}
+.contact-section .contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contact-section .contact-info .info-item {
+  margin-bottom: 1rem;
+}
+.contact-section .contact-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+.contact-section .contact-form .form-control {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.contact-section .contact-form textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+/* CSS for positioning icons */
+section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+

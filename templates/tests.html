@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Tests
+{% endblock %}
+
+{% block head %}
+    TESTS
+{% endblock %}
+
+{% block main %}
+<body class="tests-body">
+  <div class="image-container">
+    <img src="https://images.squarespace-cdn.com/content/v1/596a449ab8a79b10f84fde0f/1594155142759-KJJGKFUR8BP0IAD3DBUH/fms+screen.png" alt="FMS Screen Image">
+  </div>
+    <h4>The Functional Movement Screen (FMS) is a screening tool used to evaluate seven
+        fundamental movement patterns in individuals with no current pain complaint or
+        musculoskeletal injury. The FMS is not intended to diagnose orthopedic problems but rather
+        to demonstrate opportunities for improved movement in individuals</h4>
+    <div>
+        <ul>
+            {% for name in names %}
+                <li><h4>{{ name }}</h1></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="select-container">
+      <form method="POST">
+        <label for="tests">Select a test:</label>
+        <select id="tests" name="tests">
+          <option value="" selected class="placeholder">Select an option</option>
+          {% for name in names %}
+            <option value="{{ name }}">{{ name }}</option>
+          {% endfor %}
+        </select>
+        <input type="submit" value="Find">
+      </form>
+    </div>
+<footer>
+    <p>Information taken from <a href ="https://www.functionalmovement.com"> Functionalmovement.com</a></p>
+</footer>
+</body>
+{% endblock %}
