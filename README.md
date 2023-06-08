@@ -14,8 +14,7 @@ Features
   Progress Tracking: You can track your progress over time, monitor improvements, and see your scores improve as you follow your physiotherapy program.
   Reminders and Notifications: The application can send you reminders and notifications to help you stay on track with your exercises and appointments.
   
-Getting Started
-  To start using Limitless, follow these steps:
+Getting Started:
 
   -Sign up: create a new account. You will need to provide your basic information and agree to our terms of service.
   -Complete Initial Assessment: After signing up, you can add your test'scores in the ADD section. Perform each test to the best of your ability, following the provided instructions (see TESTS section).
