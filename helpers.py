@@ -35,39 +35,58 @@ def assign_exercise(score, test_name, userid):
 
     # if there's a slight limitation
     if score == 2:
-        # choose one exercise for the impaired pattern from the db
-        exerciseName = db.execute("SELECT name FROM exercises WHERE pattern LIKE ? AND difficulty = 'difficult' ORDER BY RANDOM() LIMIT 1", ('%'+test_name+'%',)).fetchone()
-        # if it's not empty
-        if exerciseName:
-            exerciseName = exerciseName[0]
-            # if already has some exer in the programm
-            if currentProg:
-                # loop through each item's value
-                for row in currentProg:
-                    # if the new ex is = to the old exer
-                    if exerciseName == row:
-                        assign_exercise(score, test_name, userid)
+        while True:
+            # choose one exercise for the impaired pattern from the db
+            exercises = db.execute("SELECT name FROM exercises WHERE pattern LIKE ? AND difficulty = 'difficult' ORDER BY RANDOM() LIMIT 1", ('%'+test_name+'%',)).fetchone()
+            # if it's not empty
+            if exercises:
+                exercise = exercises[0]
+                # if already has some exer in the programm
+                if currentProg:
+                    print(currentProg)
+                    # loop through each item's value
+                    for row in currentProg:
+                        # if the new ex is = to the old exer
+                        if exercise == row[0]:
+                            break
+                    else:
 
-                # insert the exercise into players table
-                db.execute ("INSERT INTO players (exercise, repetitions, series, users_id) VALUES (?, 12, 3, ?)", (exerciseName, userid))
-            else:
-                # insert the exercise into players table
-                db.execute ("INSERT INTO players (exercise, repetitions, series, users_id) VALUES (?, 12, 3, ?)", (exerciseName, userid))
+                        # insert the exercise into players table
+                        db.execute ("INSERT INTO players (exercise, repetitions, series, users_id) VALUES (?, 12, 3, ?)", (exercise, userid))
+                        break
+
+                else:
+                    # insert the exercise into players table
+                    db.execute ("INSERT INTO players (exercise, repetitions, series, users_id) VALUES (?, 12, 3, ?)", (exercise, userid))
+                    break
 
     # if there's a more severe limitation
     elif score == 1 or score == 0:
-        # select two exercises to progress the load
-        exerciseName1 = db.execute("SELECT name FROM exercises WHERE pattern LIKE ? AND difficulty = 'easy' ORDER BY RANDOM() LIMIT 1",('%'+test_name+'%',)).fetchone()
-        exerciseName2 = db.execute("SELECT name FROM exercises WHERE pattern LIKE ? AND difficulty = 'mid' ORDER BY RANDOM() LIMIT 1",('%'+test_name+'%',)).fetchone()
-        if exerciseName1 and exerciseName2:
-            exerciseName1 = exerciseName1[0]
-            exerciseName2 = exerciseName2[0]
 
-            # insert the easiest exercise in player's db
-            db.execute ("INSERT INTO players (exercise, repetitions, series, users_id) VALUES (?, 8, 4, ?)", (exerciseName1, userid))
-            # insert the other exercise in player's db
-            repetitions = 30 if exerciseName2 == 'Brettzel' else 10
-            db.execute ("INSERT INTO players (exercise, repetitions, series, users_id) VALUES (?, ?, 3, ?)", (exerciseName2, repetitions, userid))
+
+        # select two exercises for that difficulty and that impaired pattern
+        exercisesEasy = db.execute("SELECT name FROM exercises WHERE pattern LIKE ? AND difficulty = 'easy' ORDER BY RANDOM()",('%'+test_name+'%',)).fetchone()
+        exercisesMid = db.execute("SELECT name FROM exercises WHERE pattern LIKE ? AND difficulty = 'mid' ORDER BY RANDOM()",('%'+test_name+'%',)).fetchone()
+        if exercisesEasy and exercisesMid:
+
+            # loop through the tuple containing all the easy exercises for that impaired pattern
+            for exerciseEasy in exercisesEasy:
+                # loop through the current exercise programm
+                if exerciseEasy not in currentProg:
+
+                    db.execute ("INSERT INTO players (exercise, repetitions, series, users_id) VALUES (?, 8, 4, ?)", (exerciseEasy, userid))
+                    break
+
+            # loop through the tuple containing all the mid difficulty exercises for that impaired pattern
+            for exerciseMid in exercisesMid:
+                # loop through the current exercise programm
+                if exerciseMid not in currentProg:
+
+                    repetitions = 30 if exerciseMid == 'Brettzel' else 10
+                    # insert the exercise in player's db
+                    db.execute ("INSERT INTO players (exercise, repetitions, series, users_id) VALUES (?, ?, 3, ?)", (exerciseMid, repetitions, userid))
+                    break
+
     db.commit()
 
 def remove_exercise(userid):

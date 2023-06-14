@@ -10,6 +10,15 @@
 
 {% block main %}
 <form action="/add" method="POST">
+    <div class="scoringFMS">
+        <h3>Scoring for Movement Pattern Assessment:</h3>
+        <ul>
+          <li><span class="score-3">Score 3:</span> Completed perfectly as verbally described.</li>
+          <li><span class="score-2">Score 2:</span> Completed with compensation(s).</li>
+          <li><span class="score-1">Score 1:</span> Unable to perform the pattern as described.</li>
+          <li><span class="score-0">Score 0:</span> If there is pain with the movement pattern.</li>
+        </ul>
+      </div>
     {% for test in tests %}
         <div>
             <p>{{ test }}:</p>

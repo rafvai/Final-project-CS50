@@ -9,29 +9,34 @@
 {% endblock %}
 
 {% block main %}
-    <table>
-        <thead>
-            <tr>
-                {% for key in exercises[0] %}
-                    <th> {{ key }} </th>
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for exercise in exercises %}
+    {% if exercises == [] %}
+        <div>
+            <h5> Your exercises'library is empty, please add a new evaluation!</h5>
+        </div>
+    {% else %}
+        <table>
+            <thead>
                 <tr>
-                    {% for key, value in exercise.items() %}
-                        <td>
-                            {% if key == "link" %}
-                                <a href="{{ value }}">Link</a>
-                            {% else %}
-                                {{ value }}
-                            {% endif %}
-                        </td>
+                    {% for key in exercises[0] %}
+                        <th> {{ key }} </th>
                     {% endfor %}
                 </tr>
-            {% endfor %}
-        </tbody>
-
-    </table>
+            </thead>
+            <tbody>
+                {% for exercise in exercises %}
+                    <tr>
+                        {% for key, value in exercise.items() %}
+                            <td>
+                                {% if key == "link" %}
+                                    <iframe width="360" height="215" src="{{ value }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                {% else %}
+                                    {{ value }}
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 {% endblock %}

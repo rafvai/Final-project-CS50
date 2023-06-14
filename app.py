@@ -4,8 +4,6 @@ from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import login_required, assign_exercise, remove_exercise
 from datetime import datetime
-import json
-import plotly.graph_objects as go
 
 
 
@@ -181,37 +179,7 @@ def scores():
     # calculate the length of myscores
     num_rows = len(myscores)
 
-    categories = []
-    r = []
-
-    # Take the names of the tests and save them in a variable
-    for row in myscores[num_rows - 2: num_rows - 1]:
-        for key, value in row.items():
-            categories.append(key)
-            r.append(value)
-
-    fig = go.Figure()
-
-    fig.add_trace(go.Scatterpolar(
-        r=r,
-        theta=categories,
-        fill='toself',
-        name='Product A'
-    ))
-
-    fig.update_layout(
-        polar=dict(
-            radialaxis=dict(
-                visible=True,
-                range=[0, 3]
-            )
-        ),
-        showlegend=False
-    )
-
-    fig_json = fig.to_json()
-
-    return render_template("scores.html", myscores = myscores, name = name, num_rows = num_rows, fig_json=fig_json)
+    return render_template("scores.html", myscores = myscores, name = name, num_rows = num_rows)
 
 
 
@@ -240,6 +208,7 @@ def add():
         test_names = ['deep squat','hurdle step','in line lunge','shoulder mobility','active straight leg raise','trunk stability push up','rotary stability']
         # create a list of dict to store key and results obtained by user
         test_scores = []
+        values = []
         # user id
         userid = session["user_id"]
         # loop through test's names
@@ -248,9 +217,10 @@ def add():
             score = { key: int(request.form.get(key))}
             # add key and score to the variable
             test_scores.append(score)
+            values.append(int(request.form.get(key)))
 
         # insert a new row in the table
-        db.execute("INSERT INTO scores(users_id, date) VALUES (?, ?)", userid, today)
+        db.execute("INSERT INTO scores(users_id,deep_squat,hurdle_step,in_line_lunge,shoulder_mobility,active_straight_leg_raise,trunk_stability_push_up,rotary_stability,date) VALUES (?,?,?,?,?,?,?,?,?)", userid,*values,today)
 
         # remove previous exercises program
         remove_exercise(userid)
@@ -259,8 +229,6 @@ def add():
         for score in test_scores:
             for key, value in score.items():
                 key = key.replace(" ","_")
-                # add results to db
-                db.execute("UPDATE scores SET ? = ? WHERE users_id = ? AND date = ?",key, value, userid, today)
 
                 # assign specific exercises according to test's scores
                 assign_exercise(value, key ,userid)

@@ -22,16 +22,22 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td rowspan= "{{ exercise| length}}">{{ name }} {{ lastname }}</td>
-        </tr>
-            {% for exercise in exercises %}
-                <tr>
-                    {% for key in exercise %}
-                        <td>{{ exercise[key] }}</td>
-                    {% endfor %}
-                </tr>
-            {% endfor %}
-        </tr>
+        {% if exercises == [] %}
+            <tr>
+                <td> {{ name }}, you don't have any assigned exercise yet! </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td rowspan= "{{ exercise| length}}">{{ name }} {{ lastname }}</td>
+            </tr>
+                {% for exercise in exercises %}
+                    <tr>
+                        {% for key in exercise %}
+                            <td>{{ exercise[key] }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tr>
+        {% endif %}
     </tbody>
 {% endblock %}
