@@ -1,0 +1,11 @@
+sort1 uses: Bubble sort
+
+How do you know?: Because it's the only sorting method with a significant difference between the best case and worst case scenario
+
+sort2 uses: Merge sort
+
+How do you know?:Both, sort 2 and 3, had more or less the same time between their best and worst case scenario, but increasing the number of elements sort 2 was significantly faster than sort 3
+
+sort3 uses: Selection sort
+
+How do you know?: Because had the same time between best case and worst case scenario and became significantly slower (compared to sort2) increasing the number of elements to sort
