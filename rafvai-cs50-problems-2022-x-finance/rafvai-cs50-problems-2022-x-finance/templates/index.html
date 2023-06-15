@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your portfolio
+{% endblock %}
+
+{% block main %}
+    <table>
+        <thead>
+            <tr>
+                {% for key in stocks[0] %}
+                    <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    {% for key in stock %}
+                        {% if key == "total" or key == "price" %}
+                            <td>{{ stock[key] | usd }}</td>
+                        {% else %}
+                            <td>{{ stock[key] }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+            <tr>
+                <th> Cash </th>
+                <td>{{ cash | usd }}</td>
+            </tr>
+            <tr>
+                <th> Total </th>
+                <td>{{ totalcash | usd }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Transactions'history
+{% endblock %}
+
+{% block main %}
+    <table>
+        {% for table in tables %}
+            <tr>
+                <td>
+                    {{ table }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
